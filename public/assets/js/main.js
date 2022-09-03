@@ -2,7 +2,7 @@ document.getElementById('insertar').addEventListener('submit', function (e) {
   e.preventDefault();
   const payload = prepararData(e);
   axios
-    .post('http://localhost:3000/ejercicios', payload)
+    .post('/ejercicios', payload)
     .then((res) => {
       getData(e);
     })
@@ -17,7 +17,7 @@ document.getElementById('editar').addEventListener('submit', function (e) {
   e.preventDefault();
   const payload = prepararData(e);
   axios
-    .put('http://localhost:3000/ejercicios', payload)
+    .put('/ejercicios', payload)
     .then((res) => {
       getData(e);
     })
@@ -33,7 +33,7 @@ document.getElementById('eliminar').addEventListener('submit', function (e) {
   const nombre = e.target[1].value;
   axios
     /* .delete('http://localhost:3000/ejercicios?nombre=' + nombre) */
-    .delete('http://localhost:3000/ejercicios/' + nombre)
+    .delete('/ejercicios/' + nombre)
     .then((res) => {
       getData(e);
     })
@@ -62,7 +62,7 @@ function cleanInputs(e) {
 }
 async function getData(e) {
   if (e) cleanInputs(e);
-  const { data } = await axios.get('http://localhost:3000/ejercicios');
+  const { data } = await axios.get('/ejercicios');
   let tbody = document.getElementsByTagName('tbody')[0];
   const ejercicios = data.rows;
 
